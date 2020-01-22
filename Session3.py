@@ -95,10 +95,61 @@ class LinkedList:
 
         print()
 
-    def appendInBetween(self, object, index1, index2):
+    def insert(self, index, object):
 
-        node = Node(object, None)
+        LinkedList.__size += 1
+
+        node = Node(object, index, None)
         print(">> [APPEND] Node:", node, "[NEXT NODE]:", node.nextNode)
+
+        temp = LinkedList.head
+        previous = LinkedList.head
+
+        while temp.nextNode is not None:
+
+            if temp.index == index:
+
+                node.nextNode = previous.nextNode
+                previous.nextNode = node
+
+                self.updateIndexes(node.nextNode)
+
+                break
+
+            previous = temp
+            temp = temp.nextNode
+
+        print()
+
+    def remove(self, object):
+
+        temp = LinkedList.head
+        previous = LinkedList.head
+
+        while temp.nextNode is not None:
+
+            if temp.data == object:
+                previous.nextNode = temp.nextNode
+                del temp
+
+                # Update Indexes
+
+                break
+
+            previous = temp
+            temp = temp.nextNode
+
+        print()
+
+    def removeHead(self):
+
+        print()
+
+    def removeTail(self):
+
+        print()
+
+    def removePoistion(self, index):
 
         print()
 
@@ -126,11 +177,22 @@ lRef.append(80)
 lRef.append(55)
 lRef.append(78)
 
+print(">> Initial List:")
 lRef.printList()
+
+print()
 
 lRef.appendBeginning(90)
 lRef.appendBeginning(16)
+print(">> List with data in Beginning:")
+lRef.printList()
+
+print()
+
+print(">> List with data at index 2:")
+lRef.insert(2, 77)
 
 lRef.printList()
 
-print(">> Size of Linked List is:" ,lRef.size())
+print(">> Size of Linked List is:", lRef.size())
+
