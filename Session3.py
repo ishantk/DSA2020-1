@@ -102,12 +102,12 @@ class LinkedList:
         node = Node(object, index, None)
         print(">> [APPEND] Node:", node, "[NEXT NODE]:", node.nextNode)
 
-        temp = LinkedList.head
+        current = LinkedList.head
         previous = LinkedList.head
 
-        while temp.nextNode is not None:
+        while current.nextNode is not None:
 
-            if temp.index == index:
+            if current.index == index:
 
                 node.nextNode = previous.nextNode
                 previous.nextNode = node
@@ -116,28 +116,36 @@ class LinkedList:
 
                 break
 
-            previous = temp
-            temp = temp.nextNode
+            previous = current
+            current = current.nextNode
 
         print()
 
     def remove(self, object):
 
-        temp = LinkedList.head
+        current = LinkedList.head
         previous = LinkedList.head
 
-        while temp.nextNode is not None:
+        found = False
 
-            if temp.data == object:
-                previous.nextNode = temp.nextNode
-                del temp
+        while current.nextNode is not None:
+
+            if current.data == object:
+                found = True
+                previous.nextNode = current.nextNode
+                del current
 
                 # Update Indexes
-
                 break
 
-            previous = temp
-            temp = temp.nextNode
+            previous = current
+            current = current.nextNode
+
+        # For Last Node
+        if found is False:
+            if current.data == object:
+                previous.nextNode = current.nextNode
+                del current
 
         print()
 
@@ -165,6 +173,9 @@ class LinkedList:
 
     def size(self):
         return LinkedList.__size
+
+    def insertionSort(self):
+        pass
 
 
 # Lets Create Node Object
@@ -195,4 +206,8 @@ lRef.insert(2, 77)
 lRef.printList()
 
 print(">> Size of Linked List is:", lRef.size())
+
+
+lRef.insertionSort()
+lRef.printList()
 
