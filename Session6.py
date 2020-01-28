@@ -9,19 +9,6 @@ class Node:
         print("{} | {}".format(self.index, self.data))
 
 
-
-
-class Product:
-
-    def __init__(self, title, rating, isDealOfDay, price, isPrime, nextProduct):
-        self.title = title
-        self.rating = rating
-        self.isDealOfDay = isDealOfDay
-        self.price = price
-        self.isPrime = isPrime
-        self.nextProduct = nextProduct
-
-
 class LinkedList:
 
     # Is Property of Class
@@ -171,11 +158,22 @@ class LinkedList:
 
         temp.showNode()
 
+
+    def printNode(self, node):
+
+        if node.nextNode is None:
+            node.showNode()
+            return
+
+        node.showNode()
+        self.printNode(node.nextNode)
+
+
     def size(self):
         return LinkedList.__size
 
     # Recursive Function or Loops along-with it :)
-
+    """
     def insertionSort(self):
 
         fisrtIdxNode = LinkedList.head.nextNode
@@ -184,14 +182,36 @@ class LinkedList:
         if zerothIdxNode.data > fisrtIdxNode.data:
 
             LinkedList.head = fisrtIdxNode
-            temp = fisrtIdxNode
+            tempIdx = fisrtIdxNode.index
 
-            fisrtIdxNode.nextNode = zerothIdxNode.nextNode
-
+            # Change Indexes
             fisrtIdxNode.index = zerothIdxNode.index
-            fisrtIdxNode.nextNode = zerothIdxNode.nextNode
+            zerothIdxNode.index = tempIdx
 
-            zerothIdxNode.nextNode = temp.nextNode
+            # Change Nodes
+            zerothIdxNode.nextNode = fisrtIdxNode.nextNode
+            fisrtIdxNode.nextNode = zerothIdxNode
+    """
+
+    def insertionSort(self):
+
+        node = LinkedList.head.nextNode
+        current = LinkedList.head
+
+
+        while node.nextNode != None:
+            key = node.data  # 80
+
+            temp = current.nextNode
+
+            while temp.nextNode != node.nextNode:
+                temp = temp.nextNode
+
+
+
+
+
+
 
 
 # Lets Create Node Object
@@ -201,29 +221,15 @@ class LinkedList:
 lRef = LinkedList()
 lRef.append(85)
 lRef.append(80)
-lRef.append(55)
-lRef.append(78)
+lRef.append(77)
 
-print(">> Initial List:")
-lRef.printList()
-
-print()
-
-lRef.appendBeginning(90)
-lRef.appendBeginning(16)
-print(">> List with data in Beginning:")
-lRef.printList()
+print(">> INITIAL LIST: ")
+# lRef.printList()
+lRef.printNode(LinkedList.head)
 
 print()
 
-print(">> List with data at index 2:")
-lRef.insert(2, 77)
-
-lRef.printList()
-
-print(">> Size of Linked List is:", lRef.size())
-
-print(">> AFTER SORTING LIST")
-lRef.insertionSort()
-lRef.printList()
+print(">> AFTER SORTING LIST: ")
+# lRef.insertionSort()
+# lRef.printList()
 
