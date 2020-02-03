@@ -17,7 +17,7 @@ class Stack:
     items = 0
 
     def __init__(self):
-        print(">> Linked List Object Constructed")
+        print(">> Stack Object Constructed")
         self.head = None
         self.current = None
 
