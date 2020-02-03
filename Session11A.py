@@ -124,6 +124,7 @@ queue.peek()
 
 
 # HW Singly LinkedList -> Implement Stack and Queue
+# Implement Search and Sort | Circluar Linked List :)
 # CW Use Inheritance Technique -> LinkedList is Parent | Stack and Queue are Children
 
 
