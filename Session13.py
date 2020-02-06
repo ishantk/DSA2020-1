@@ -54,7 +54,6 @@ class Tree:
         return node
 
     def preOrder(self, node):
-
         if node != None:
             node.object.showProduct()
             self.preOrder(node.left)
@@ -62,15 +61,55 @@ class Tree:
 
 
     def inOrder(self, node):
-        pass
+        if node != None:
+            self.inOrder(node.left)
+            node.object.showProduct()
+            self.inOrder(node.right)
 
     def postOrder(self, node):
-        pass
+        if node != None:
+            self.postOrder(node.left)
+            self.postOrder(node.right)
+            node.object.showProduct()
 
-    def minimumNode(self, node):
-        pass
+    # Iterating in the Left with displaying only last Node
+    def minimum(self, node):
+        if node != None:
+           if node.left == None:
+                node.object.showProduct()
+           self.minimum(node.left)
 
-    def maximumNode(self, node):
+    # Iteration in Left
+    def minimumNode(self):
+
+        temp = self.rootNode
+
+        while temp.left != None:
+            temp = temp.left
+
+        temp.object.showProduct()
+
+
+    # Iterating in the Left with displaying only last Node
+    def maximum(self, node):
+        if node != None:
+           if node.right == None:
+                node.object.showProduct()
+           self.maximum(node.right)
+
+    # Iteration in Right
+    def maximumNode(self):
+
+        temp = self.rootNode
+
+        while temp.right != None:
+            temp = temp.right
+
+        temp.object.showProduct()
+
+    # Try finding it with recursion
+    # Find Time Complexity of Your Algo :)
+    def search(self, node, productId):
         pass
 
 
@@ -86,6 +125,24 @@ tree.add(tree.rootNode, Product(601, "Samsung M40", 9000, 1))
 
 print("PRE ORDER TRAVERSAL")
 tree.preOrder(tree.rootNode)
+print()
+
+print("IN ORDER TRAVERSAL")
+tree.inOrder(tree.rootNode)
+print()
+
+print("POST ORDER TRAVERSAL")
+tree.postOrder(tree.rootNode)
+print()
+
+print("MINIMUM NODE")
+tree.minimumNode()          # With Loops
+tree.minimum(tree.rootNode) # With Recursion
+
+print("MAXIMUM NODE")
+tree.maximumNode()          # With Loops
+tree.maximum(tree.rootNode) # With Recursion
+
 
 """
               8000
