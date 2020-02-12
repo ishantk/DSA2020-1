@@ -100,14 +100,13 @@ class LinkedList:
 
         p1.pid, p1.name, p1.price, p1.quantity, p2.pid, p2.name, p2.price, p2.quantity = p2.pid, p2.name, p2.price, p2.quantity, p1.pid, p1.name, p1.price, p1.quantity
 
-
+    # By Swapping Nodes
     @staticmethod
     def swapProducts(p1, p2):
-        # We must check for head and current which is last
-        # p1.next, p1.previous, p2.next, p2.previous = p2.next, p2.previous, p1.next, p1.previous
+        pass
 
-
-    def bubbleSort(self):
+    # By Swapping Data In Object
+    def bubbleSortDataInProducts(self):
 
         iTemp = self.head
         jTemp = self.head
@@ -122,12 +121,11 @@ class LinkedList:
                 print("[PRICES]", jTemp.price, jTemp.next.price)
 
                 # Swapping with Price
-                # if jTemp.price > jTemp.next.price:
+                if jTemp.price > jTemp.next.price:
 
                 # Swapping with Quantity
-                if jTemp.price * jTemp.quantity > jTemp.next.price * jTemp.next.quantity:
+                # if jTemp.price * jTemp.quantity > jTemp.next.price * jTemp.next.quantity:
                     LinkedList.swapDataInProducts(jTemp, jTemp.next)
-
                 jTemp = jTemp.next
 
             print()
@@ -135,11 +133,26 @@ class LinkedList:
             iTemp = iTemp.next
 
 
+    # By Swapping Nodes
+    def bubbleSortProducts(self):
+       pass
+
+
     def iterate(self):
         temp = self.head
         for i in range(0, LinkedList.size):
             temp.showProduct()
             temp = temp.next
+
+    def iterate1(self):
+        temp = self.head
+        while True:
+            temp.showProduct()
+            temp = temp.next
+            if temp == self.head:
+                break
+
+
 
 
 lRef = LinkedList()
@@ -150,5 +163,10 @@ lRef.append(Product(301, "Samsung LED", 50000, 2))
 lRef.append(Product(401, "Samsung M10", 1000, 12))
 lRef.append(Product(501, "Lays", 20, 5))
 
-lRef.bubbleSort()
+print("==BEFORE SORT==")
+lRef.iterate()
+
+lRef.bubbleSortDataInProducts()
+
+print("==AFTER SORT==")
 lRef.iterate()
