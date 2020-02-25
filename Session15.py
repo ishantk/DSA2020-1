@@ -52,6 +52,8 @@ def mergeSort(numbers):
 
         print("3. RIGHT WHILE LOOP RESULT | NUMBERS:{}".format(numbers))
 
+        print("----------------")
+
 numbers = [-3, 10, 14, -9, 11, 13, 2]
 print("[ORIGINAL NUMBERS]:", numbers)
 
