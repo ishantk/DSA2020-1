@@ -1,60 +1,60 @@
-"""
 def mergeSort(numbers):
-    left = []
-    right= []
 
-    mid = (0 + len(numbers)-1)//2
-    print(mid)
+    # Firstly we shall Divide the Data into Left and Right
+    if len(numbers) > 1:
+        middle = len(numbers)//2
+        leftList = numbers[0: middle]
+        rightList = numbers[middle:]
 
-    for i in range(0, mid):
-        left.append(numbers[i])
+        print("MERGE SORT: [LEFT]", leftList, "[RIGHT]", rightList)
 
-    for i in range(mid, len(numbers)):
-        right.append(numbers[i])
+        # Division of Lists
 
-    print(left)
-    print(right)
+        #  Left List Sorting
+        mergeSort(leftList)
 
-    print(numbers[0:mid])
-    print(numbers[mid:len(numbers)])
+        # Right List Sorting
+        mergeSort(rightList)
 
-"""
+        # Comparison of List Elements
+        i = 0
+        j = 0
+        k = 0
 
-def merge(numbers, left, middle, right):
-    print("==MERGE START==")
-    # print(numbers, left, middle, right)
+        # To make sure data is sorted
+        while i < len(leftList) and j < len(rightList):
+            print("SORT WHILE EXECUTED | i: {}, j:{}, [LEFT]:{}, [RIGHT]:{}".format(i, j, leftList, rightList))
+            if leftList[i] < rightList[j]:
+                numbers[k] = leftList[i]
+                i += 1
+            else:
+                numbers[k] = rightList[j]
+                j += 1
 
+            k += 1
 
-    leftSize = middle - left + 1     # Size of Left List
-    rightSize = right - middle       # Size of Right List
-    print("LEFT SIZE:", leftSize, "RIGHT SIZE:", rightSize)
+        print("1. SORT WHILE LOOP RESULT | NUMBERS:{}".format(numbers))
 
-    # Creating SubLists | Left and Right
-    leftList = numbers[0: leftSize]
-    rightList = numbers[middle+1: rightSize+1]
+        # Accommodate Remaining Elements
+        while i < len(leftList):
+            print("LEFT ACCOMMODATION | i:{}, k:{}".format(i, k))
+            numbers[k] = leftList[i]
+            i += 1
+            k += 1
 
-    print("[LEFT LIST:]", leftList)
-    print("[RIGHT LIST:]", rightList)
-    print("==MERGE FINISH==")
+        print("2. LEFT WHILE LOOP RESULT | NUMBERS:{}".format(numbers))
 
-def mergeSort(numbers, left, right):
+        while j < len(rightList):
+            print("RIGHT ACCOMMODATION | j:{}, k:{}".format(j, k))
+            numbers[k] = rightList[j]
+            j += 1
+            k += 1
 
-
-    if left < right:
-
-        middle = (left+right)//2
-        print("~~~~~~~~~~~~~~~~~~~~~~~")
-        print("[Numbers]:", numbers[left:right+1])
-        print("[MIDDLE]:", middle, "[LEFT]:", left, "[RIGHT]:", right)
-        print("~~~~~~~~~~~~~~~~~~~~~~~")
-        mergeSort(numbers, left, middle)            # Left Sub List
-        mergeSort(numbers, middle+1, right)         # Right Sub List
-
-        merge(numbers, left, middle, right)
+        print("3. RIGHT WHILE LOOP RESULT | NUMBERS:{}".format(numbers))
 
 numbers = [-3, 10, 14, -9, 11, 13, 2]
-print("[NUMBERS]:",numbers)
+print("[ORIGINAL NUMBERS]:", numbers)
 
+mergeSort(numbers)
+print("[SORTED NUMBERS]:", numbers)
 
-mergeSort(numbers, 0, len(numbers)-1)
-print(numbers)
