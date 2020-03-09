@@ -99,7 +99,7 @@ def heapSort(numbers):
 
         # Heapifying the Root Element
         # Recursion
-        print("[Recursion From Heapify]: heapify numbers:{} | i:{} | Root:{}"
+        print("[Recursion From heapSort]: heapify numbers:{} | i:{} | Root:{}"
               .format(numbers, i, 0))
         heapify(numbers, i, 0)
 
