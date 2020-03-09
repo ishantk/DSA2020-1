@@ -85,8 +85,11 @@ def heapSort(numbers):
     for i in range(n-1, 0, -1):
         heapify(numbers, n, i)
 
+
+
     # Swapping the Element with Root
     for i in range(n-1, 0, -1):
+        print("[MAX HEAP] of numbers:", numbers)
         print("SWAP: {}->{} with {}->{} in numbers:{}"
               .format(i, numbers[i], 0, numbers[0], numbers))
         # HeapSort: Swap the 0th i.e. Root
