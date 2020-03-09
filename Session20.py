@@ -82,9 +82,10 @@ def heapSort(numbers):
     n = len(numbers)
 
     # Building Max Heap for numbers:
-    for i in range(n, 0, -1):
+    for i in range(n-1, 0, -1):
         heapify(numbers, n, i)
 
+    # Swapping the Element with Root
     for i in range(n-1, 0, -1):
         print("SWAP: {}->{} with {}->{} in numbers:{}"
               .format(i, numbers[i], 0, numbers[0], numbers))
