@@ -23,6 +23,12 @@ def countAndSort(numbers, place):
 
     print("Put Data in sortedList by Referring FrequencyList")
 
+    for i in range(len(numbers)-1, -1, -1):
+        num = numbers[i] // place
+        index = num % 10
+        sortedList[frequencyList[index]-1] = numbers[i]
+        frequencyList[index] -= 1
+
     print("Put Data of sortedList in numbers")
     for i in range(len(numbers)):
         numbers[i] = sortedList[i]
