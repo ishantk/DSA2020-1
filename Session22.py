@@ -70,12 +70,16 @@ def partition(numbers, low, high):
 
     print("PARTITION FINISH - NUMBERS:{} | LOW:{} |  HIGH:{} | i:{}".format(numbers, low, high, i))
 
+    # Return the New Pivot or last element where i index stopped
     return i+1
 
 
 def quickSort(numbers, low, high):
 
-    partition(numbers, low, high)
+    if low < high:
+        pivot = partition(numbers, low, high)
+        quickSort(numbers, low, pivot-1)
+        quickSort(numbers, pivot+1, high)
 
 
 
