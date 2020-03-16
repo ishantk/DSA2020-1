@@ -111,6 +111,8 @@ class AVLTree:
         y.left = T2
 
         # Update Height of Affected Nodes:
+        y.height = self.getMaxHeight(self.height(y.left), self.height(y.right)) + 1
+        x.height = self.getMaxHeight(self.height(x.left), self.height(x.right)) + 1
 
         return x
 
@@ -124,6 +126,8 @@ class AVLTree:
         x.right = T2
 
         # Update Height of Affected Nodes:
+        y.height = self.getMaxHeight(self.height(x.left), self.height(x.right)) + 1
+        x.height = self.getMaxHeight(self.height(y.left), self.height(y.right)) + 1
 
         return y
 
