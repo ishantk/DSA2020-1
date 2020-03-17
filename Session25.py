@@ -1,14 +1,25 @@
+class Product:
+
+    def __init__(self, pid, name, price, quantity=1):
+        self.pid = pid
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def showProduct(self):
+        print("{} | {} | {}".format(self.pid, self.name, self.price))
+
+
 class TreeNode:
 
     def __init__(self):
-        print(">> Tree Node Object Constructed")
-
-        # data as of now is integral. But it can also be an object
-        self.data = 0
-
-        self.height = 1
+        self.object = None
         self.left = None
         self.right = None
+        self.height = 1
+
+    def showNode(self):
+        self.object.showProduct()
 
 
 class AVLTree:
@@ -19,16 +30,17 @@ class AVLTree:
     def __init__(self):
         print(">> AVL Tree Object Constructed")
 
-    def insert(self, node, data):
+    def insert(self, node, object):
 
         AVLTree.size += 1
 
         if node == None:
             node = TreeNode()
-            node.data = data
+            node.object = object
 
             print("^^^^^^^^^^^^^^^^^^^^")
-            print(">> [NODE ADDED] data is:", data)
+            print(">> [NODE ADDED] with object:", object)
+            object.showProduct()
             print("^^^^^^^^^^^^^^^^^^^^")
             print()
 
@@ -36,10 +48,10 @@ class AVLTree:
 
         # BST Insert Rules:
         # We will only be able to add unique data :)
-        if data < node.data:
-            node.left = self.insert(node.left, data)
-        elif data > node.data:
-            node.right = self.insert(node.right, data)
+        if object.pid < node.object.pid:
+            node.left = self.insert(node.left, object)
+        elif object.pid > node.object.pid:
+            node.right = self.insert(node.right, object)
         else:
             return node
 
@@ -54,25 +66,24 @@ class AVLTree:
         print(">> Balance Factor is:", balance)
 
         # 4 Cases of UnBalance:
-
         # Case 1. LEFT LEFT CASE
-        if balance > 1 and data < node.left.data:
+        if balance > 1 and object.pid < node.left.object.pid:
             print("LEFT LEFT CASE")
             return self.rightRotate(node)
 
         # Case 2. LEFT RIGHT CASE
-        if balance > 1 and data > node.left.data:
+        if balance > 1 and object.pid > node.left.object.pid:
             print("LEFT RIGHT CASE")
             node.left = self.leftRotate(node.left)
             return self.rightRotate(node)
 
         # Case 3. RIGHT RIGHT CASE
-        if balance < -1 and data > node.right.data:
+        if balance < -1 and object.pid > node.right.object.pid:
             print("RIGHT RIGHT CASE")
             return self.leftRotate(node)
 
         # Case 4. RIGHT LEFT CASE
-        if balance < -1 and data < node.right.data:
+        if balance < -1 and object.pid < node.right.object.pid:
             print("RIGHT LEFT CASE")
             node.right = self.rightRotate(node.right)
             return self.leftRotate(node)
@@ -103,7 +114,7 @@ class AVLTree:
 
 
     def rightRotate(self, y):
-
+        print("RIGHT ROTATION")
         x = y.left
         T2 = x.right
 
@@ -118,7 +129,7 @@ class AVLTree:
 
 
     def leftRotate(self, x):
-
+        print("LEFT ROTATION")
         y = x.right
         T2 = y.left
 
@@ -132,40 +143,26 @@ class AVLTree:
         return y
 
 
-    def preOrder(self, node):
-        if node != None:
-            print(node.data)
-            self.preOrder(node.left)
-            self.preOrder(node.right)
-
-    def inOrder(self, node):
-        if node != None:
-            self.inOrder(node.left)
-            print(node.data)
-            self.inOrder(node.right)
-
-    def postOrder(self, node):
-        if node != None:
-            self.postOrder(node.left)
-            self.postOrder(node.right)
-            print(node.data)
-
+    # Please write iterative functions yourself
 
 def main():
 
+    # BST -> Right Skewed Tree
+    p1 = Product(101, "AlphaBounce Shoe", 8000)
+    p2 = Product(201, "iPhone X", 10000)
+    p3 = Product(301, "MacBook", 20000)
+    p4 = Product(401, "MacBook", 20000)
+    p5 = Product(501, "MacBook", 20000)
+
     tree = AVLTree()
+    rootNode = tree.insert(None, p1)
+    tree.insert(rootNode, p2)
+    tree.insert(rootNode, p3)
+    tree.insert(rootNode, p4)
+    tree.insert(rootNode, p5)
 
-    rootNode = tree.insert(None, 30)
-    tree.insert(rootNode, 5)
-    tree.insert(rootNode, 35)
-    tree.insert(rootNode, 32)
-    tree.insert(rootNode, 40)
-    tree.insert(rootNode, 45)
 
-    # tree.inOrder(rootNode)
 
 
 if __name__ == '__main__':
     main()
-
-
