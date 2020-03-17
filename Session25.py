@@ -144,6 +144,10 @@ class AVLTree:
 
 
     # Please write iterative functions yourself
+    # preorder, postorder and inorder
+
+    # Write utility functions
+    # minimumData, maximumData, search
 
 def main():
 
