@@ -133,6 +133,8 @@ def main():
 
                     7
 
+                 6
+
 
     """
 
@@ -141,6 +143,7 @@ def main():
     rbTree.insert(1)
     rbTree.insert(5)
     rbTree.insert(7)
+    rbTree.insert(6)
     rbTree.preOrder(rbTree.root)
 
 
