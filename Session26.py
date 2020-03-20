@@ -79,7 +79,7 @@ class RedBlackTree:
         node.parent = y
 
         if y is None:
-            print(">> y is None: Made the Node as Root")
+            print(">> y is None for data", data, "Made the Node as Root")
             self.root = node
         elif node.data < y.data:
             y.left = node
@@ -88,7 +88,7 @@ class RedBlackTree:
 
         if node.parent is None:
             node.color = 0
-            print(">> Node's Parent is None: Made the Root Node Color as Black")
+            print(">> Node's Parent is None for data", data, "Made the Root Node Color as Black")
             return
 
         if node.parent.parent is None:
@@ -99,7 +99,6 @@ class RedBlackTree:
     def fixInsert(self):
         pass
 
-
 def main():
     rbTree = RedBlackTree()
     rbTree.insert(50)
@@ -108,7 +107,6 @@ def main():
     rbTree.insert(60)
     rbTree.insert(80)
     rbTree.insert(55)
-
 
 
 if __name__ == '__main__':
