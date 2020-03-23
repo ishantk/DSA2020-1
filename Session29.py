@@ -145,10 +145,10 @@ class RedBlackTree:
 
                     # LEFT CASE IN RIGHT : newNode == newNode.parent.left
                     if newNode == newNode.parent.left:
+                        newNode = newNode.parent
                         print(">> [FIX]: newNode [{}] == newNode.parent.left [{}]"
                               .format(newNode.data, newNode.parent.left.data))
                         print(">> [FIX]: RIGHT LEFT UNBALANCE")
-                        newNode = newNode.parent
                         self.rotateRight(newNode)
                         print(">> [FIX]: Flip Colors to BLACK for",
                               newNode.parent.data, "and RED for", newNode.parent.parent.data)
@@ -200,8 +200,67 @@ class RedBlackTree:
     def rotateRight(self, node):
         print(">> [RIGHT ROTATION] for node:", node.data)
 
+        # Temporary variable y holding reference of left node
+        y = node.left
+        print(">> [RIGHT ROTATION] y is:", y.data)
+
+        node.left = y.right
+        print(">> [RIGHT ROTATION] node.left {} = y.right {}".format(node.left.data, y.right.data))
+
+        # in case we have subtree below
+        if y.right != self.NIL:
+            y.right.parent = node
+            print(">> [RIGHT ROTATION] y.right.parent {} = node {}"
+                  .format(y.right.parent.data, node.data))
+
+        # Temporary variable y's parent now becomes node's parent
+        y.parent = node.parent
+        print(">> [RIGHT ROTATION] y.parent {} = node.parent {}"
+              .format(y.parent.data, node.parent.data))
+
+        if node.parent is None:
+            self.root = y
+            print(">> [RIGHT ROTATION] self.root {} = y {}"
+                  .format(self.root.data, y.data))
+        elif node == node.parent.right:
+            node.parent.right = y
+            print(">> [RIGHT ROTATION] node {} == node.parent.right {}"
+                  .format(node.data, node.parent.right.data))
+        else:
+            print(">> [RIGHT ROTATION] node {} != node.parent.right {}"
+                  .format(node.data, node.parent.right.data))
+            node.parent.left = y
+
+        y.right = node
+        print(">> [RIGHT ROTATION]  y.right {} = node {} "
+              .format(y.right.data, node.data))
+
+        node.parent = y
+        print(">> [RIGHT ROTATION]  node.parent {} = y {}"
+              .format(node.parent.data, y.data))
+
+
     def rotateLeft(self, node):
         print(">> [LEFT ROTATION] for node:", node.data)
+
+        y = node.right
+        node.right = y.left
+
+        if y.left != self.NIL:
+            y.left.parent = node
+
+        y.parent = node.parent
+
+        if node.parent is None:
+            self.root = y
+        elif node == node.parent.right:
+            node.parent.left = y
+        else:
+            node.parent.right = y
+
+        y.left = node
+        node.parent = y
+
 
     def preOrder(self, node):
         if node != None:
@@ -213,14 +272,46 @@ class RedBlackTree:
 def main():
 
     """
+                1.
 
-             3
+              3 (B)
 
-         1      5
+         1 (R)     5 (R)
 
-                    7
 
-                 6
+                2.
+              3 (B)
+
+         1 (R)     5 (R)
+
+                     7 (R)
+
+                  3. | Color Flip
+               3 (B)
+
+         1 (B)     5 (B)
+
+                    7 (R)
+
+
+                4.
+              3 (B)
+
+         1 (B)     5 (B)
+
+                    7 (R)
+
+                 6 (R)
+
+
+                 5. | Right Rotation
+
+
+
+                 6. | and then Left Rotation
+
+
+
 
     """
 
